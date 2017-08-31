@@ -1,0 +1,27 @@
+{
+    "HOME": {
+        "TITULO": "ByteNet",
+        "MENU": {
+            "ITEM1": "Home",
+            "ITEM2": "Process",
+            "ITEM3": "Contact Us"
+        },
+        "SECCION-INTRO": {
+            "TITULO": "We design and develop enterprise software solutions that meets your requirements.",
+            "BOTON": "¿Do you need IT software?"
+        },
+        "FOOTER": {
+            "COPYRIGHT": "© 2017 ByteNet.",
+            "DERECHOS": "Copyright.",
+            "EMAIL1": "ventas@bytenetlab.com.mx",
+            "EMAIL2": "trabajo@bytenetlab.com.mx",
+            "TELEFONO": {
+                "TITULO": "Phone number",
+                "NUMERO1": "+52(55) 3230-4454"                
+            }
+        }
+    },
+    "PROCESO": {
+        "TITULO": "Proceso"
+    }
+}

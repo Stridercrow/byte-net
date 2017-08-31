@@ -1129,7 +1129,7 @@ and (orientation : portrait)
 
 	.gliph
 	{
-		background-image: url("../img/glyphicons_free/glyphicons/png/glyphicons-161-imac.png");
+		/*background-image: url("../img/glyphicons_free/glyphicons/png/glyphicons-161-imac.png");*/
 		background-size: cover;
 		display: inline-block;
 		height: 48px;

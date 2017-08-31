@@ -1,0 +1,27 @@
+{
+    "HOME": {
+        "TITULO": "ByteNet",
+        "MENU": {
+            "ITEM1": "Home",
+            "ITEM2": "Proceso",
+            "ITEM3": "Contacto"
+        },
+        "SECCION-INTRO": {
+            "TITULO": "Diseño y creación de sistemas de TI. A la medida de tu negocio, de clase empresarial.",
+            "BOTON": "¿Quieres integrar la tecnologÍa para administrar mejor tu negocio?"
+        },
+        "FOOTER": {
+            "COPYRIGHT": "© 2016 ByteNet.",
+            "DERECHOS": "Todos los derechos reservados.",
+            "EMAIL1": "ventas@bytenetlab.com.mx",
+            "EMAIL2": "trabajo@bytenetlab.com.mx",
+            "TELEFONO": {
+                "TITULO": "TELÉFONOS",
+                "NUMERO1": "+52(55) 3230-4454"                
+            }
+        }
+    },
+    "PROCESO": {
+        "TITULO": "Proceso"
+    }
+}
