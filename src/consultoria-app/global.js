@@ -1,220 +1,221 @@
 import $ from "jquery";
 
-$(document).ready(function(){        
-        $("video").css({"width" : screen.width, "height" : screen.height });
-        $("#js-home-hero").css("height", window.innerHeight);
-        $(".proceso-container").css({"width" : window.innerWidth, "height" : window.innerHeight });
-        var titulo = $(document).find("title").text();
-        if(titulo == 'Proceso')
-        {
-            if(screen.width < 500){
-                $(".proceso").replaceWith(remplazaHtmlMovil);
-            }
+$(document).ready(function () {    
+    $("video").css({ "width": screen.width, "height": screen.height });
+    $("#js-home-hero").css("height", window.innerHeight);
+    $(".proceso-container").css({ "width": window.innerWidth, "height": window.innerHeight });
+    var titulo = $(document).find("title").text();
+    if (titulo == 'Proceso') {
+        if (screen.width < 500) {
+            $(".proceso").replaceWith(remplazaHtmlMovil);
         }
+    }
 
-        if(screen.width > 500){
-            $(".idea-container").css({"width" : window.innerWidth, "height" : window.innerHeight });
-        }
+    if (screen.width > 500) {
+        $(".idea-container").css({ "width": window.innerWidth, "height": window.innerHeight });
+    }
 
-        //estado inicial, se va a ir actualizando conforme se haga el resize
-        var alturaScreenActual = screen.height;
+    //estado inicial, se va a ir actualizando conforme se haga el resize
+    var alturaScreenActual = screen.height;
 
-        $(window).resize(function(){
-            var h = Math.min(2000, window.innerHeight);
-            //var alturaScreenNueva;
-            //console.log("Tamaño de la pantalla: ancho-" + window.innerWidth + " alto-" + window.innerHeight);
-            $("#js-home-hero").css("height", h+"px");
-            $(".proceso-img").css({"width" : window.innerWidth,"height" : h+"px"});
-            $(".idea-container").css({"width" : window.innerWidth, "height" : window.innerHeight });
-            /*console.log("alturaScreenActual = " + alturaScreenActual);
-            console.log("screen.height al scrollear = " + $(this).height());
-            alturaScreenNueva =  alturaScreenActual - $(this).height();
-            console.log("alturaScreenNueva = " + alturaScreenNueva)
-            console.log("");
-            alturaScreenActual = alturaScreenNueva;
-            alturaScreenNueva = -585;
-            $("video").css("transform", "translate(0px," + alturaScreenNueva + "px)");*/
-        });
-
-        //Al scrollear cambiar el fondo del menu
-        var scrollPos = 0;
-        $(document).scroll(function(){
-            scrollPos = $(this).scrollTop();
-            //console.log("Posicion scroll main-header: " + scrollPos);
-            if(scrollPos > 88){
-                //console.log("Si lo tendria q cambiar");
-                $(".main-header-bg").css("opacity", "0.9");
-                //$(".main-header").animate({backgroundColor: "#000"});
-            }else{
-                //console.log("Regresaria a transparente");
-                $(".main-header-bg").css("opacity", "0");
-                //$(".main-header").animate({backgroundColor: "transparent"});
-            }
-        });
-
-        //El efecto del boton con puntitos
-        setInterval(function(){efecto($(".circle:first"))}, 100);
-        setInterval(function(){efecto($("#second"))}, 200);
-        setInterval(function(){efecto($("#third"))}, 300);
-
-        $(".scroll").click(function(){
-            $('html,body').animate({
-                scrollTop: $(".info-section").offset().top}, 'slow');
-        });
-
-        $("#btnQuieroApp").click(function(){
-            $('html,body').animate({
-                scrollTop: $(".info-section").offset().top}, 'slow');
-        });
-
-        //Menu vertical movil
-        $(".menu-movil").click(function(){
-            var estadoDisplay = $(".menu-vertical").css("height");
-            console.log(estadoDisplay);
-
-            if(estadoDisplay == "0px"){
-                $(".menu-vertical").animate({height: window.innerHeight}, 200);
-            }else{
-                $(".menu-vertical").animate({height: "0"}, 200);
-            }
-        });
-
-        //Cambia de el texto del proceso
-        var procesos = ['consultoria', 'diseno', 'desarrollo'];
-        var procesoActivo = 0;
-        var imagenes = ['proces_cons', 'proces_dez', 'proces_dev'];
-
-
-        //Cambia la imagen de fondo al cambiar de proceso
-        $(".derecha").click(function (){
-            console.log("otro clic, proceso a leer: " + procesoActivo);
-            switch(procesoActivo){
-                case 0:
-                    procesoActivo = cambiaProceso(procesos, procesoActivo, imagenes);
-                    $(".izquierda").toggleClass("display-none", false);
-                    console.log("Proceso Activo: " + procesoActivo);
-                    break;
-                case 1:
-                    procesoActivo = cambiaProceso(procesos, procesoActivo, imagenes);
-                    console.log("Proceso Activo: " + procesoActivo);
-                    $(".derecha").toggleClass("display-none", true);
-                    break;
-                case 2:
-                    //Desaparece la flecha derecha
-                    console.log("Proceso Activo: " + procesoActivo);
-                    break;
-            }
-        });
-
-        $(".izquierda").click(function (){
-            console.log("otro clic, proceso a leer: " + procesoActivo);
-            switch(procesoActivo){
-                case 0:
-                    console.log("Proceso Activo: " + procesoActivo);
-                    break;
-                case 1:
-                    $(".izquierda").toggleClass("display-none", true);
-                    procesoActivo = cambiaProcesoIzq(procesos, procesoActivo, imagenes);
-                    console.log("Proceso Activo: " + procesoActivo);
-                    break;
-                case 2:
-                    procesoActivo = cambiaProcesoIzq(procesos, procesoActivo, imagenes);
-                    $(".derecha").toggleClass("display-none", false);
-                    console.log("Proceso Activo: " + procesoActivo);
-                    break;
-            }
-        });
-
-        //Al hacer click sobre cualquier proceso se agranda para que aparezca el texto
-        $("#consultoria").click(function(){
-            abreInfoProceso(this);
-            cierraInfoProceso($("#diseno"));
-            cierraInfoProceso($("#desarrollo"));
-        });
-
-        $("#diseno").click(function(){
-            abreInfoProceso(this);
-            cierraInfoProceso($("#consultoria"));
-            cierraInfoProceso($("#desarrollo"));
-        });
-
-        $("#desarrollo").click(function(){
-            abreInfoProceso(this);
-            cierraInfoProceso($("#consultoria"));
-            cierraInfoProceso($("#diseno"));
-        });
+    $(window).resize(function () {
+        var h = Math.min(2000, window.innerHeight);
+        //var alturaScreenNueva;
+        //console.log("Tamaño de la pantalla: ancho-" + window.innerWidth + " alto-" + window.innerHeight);
+        $("#js-home-hero").css("height", h + "px");
+        $(".proceso-img").css({ "width": window.innerWidth, "height": h + "px" });
+        $(".idea-container").css({ "width": window.innerWidth, "height": window.innerHeight });
+        /*console.log("alturaScreenActual = " + alturaScreenActual);
+        console.log("screen.height al scrollear = " + $(this).height());
+        alturaScreenNueva =  alturaScreenActual - $(this).height();
+        console.log("alturaScreenNueva = " + alturaScreenNueva)
+        console.log("");
+        alturaScreenActual = alturaScreenNueva;
+        alturaScreenNueva = -585;
+        $("video").css("transform", "translate(0px," + alturaScreenNueva + "px)");*/
     });
 
-    function efecto($elemento){
-        $elemento.fadeIn(800, function(){
-            $elemento.fadeOut(800);
-        });
-    }
+    //Al scrollear cambiar el fondo del menu
+    var scrollPos = 0;
+    $(document).scroll(function () {
+        scrollPos = $(this).scrollTop();
+        //console.log("Posicion scroll main-header: " + scrollPos);
+        if (scrollPos > 88) {
+            //console.log("Si lo tendria q cambiar");
+            $(".main-header-bg").css("opacity", "0.9");
+            //$(".main-header").animate({backgroundColor: "#000"});
+        } else {
+            //console.log("Regresaria a transparente");
+            $(".main-header-bg").css("opacity", "0");
+            //$(".main-header").animate({backgroundColor: "transparent"});
+        }
+    });
 
-    function abreInfoProceso(elemento){
-        $(elemento).animate({height: "1200px"});
-        $(elemento).children("p").css("visibility", "visible");
-        $(elemento).children("h3").css("visibility", "visible");
-        $(elemento).children("div.diagrama").css("visibility", "visible");
-        $(elemento).children("div.diagrama").find("p").css("visibility", "visible");
-    }
+    //El efecto del boton con puntitos
+    setInterval(function () { efecto($(".circle:first")) }, 100);
+    setInterval(function () { efecto($("#second")) }, 200);
+    setInterval(function () { efecto($("#third")) }, 300);
 
-    function cierraInfoProceso(elemento){
-        $(elemento).animate({height: "500px"});
-        $(elemento).children("p").css("visibility", "hidden");
-        $(elemento).children("h3").css("visibility", "hidden");
-        $(elemento).children("div.diagrama").css("visibility", "hidden");
-        $(elemento).children("div.diagrama").find("p").css("visibility", "hidden");
-    }
+    $(".scroll").click(function () {
+        $('html,body').animate({
+            scrollTop: $(".info-section").offset().top
+        }, 'slow');
+    });
 
-    function cambiaProceso(procesos, procesoActivo, imagenes){
-        var nombreProceso =	procesos[procesoActivo];
-        var nombreProcesoSig = procesos[procesoActivo+1];
-        console.log("Proceso siguiente: " + nombreProcesoSig);
+    $("#btnQuieroApp").click(function () {
+        $('html,body').animate({
+            scrollTop: $(".info-section").offset().top
+        }, 'slow');
+    });
 
-        $("." + nombreProceso + "-img").fadeOut(1500);
-        $("." + nombreProcesoSig + "-img").fadeIn(1500);
+    //Menu vertical movil
+    $(".menu-movil").click(function () {
+        var estadoDisplay = $(".menu-vertical").css("height");
+        console.log(estadoDisplay);
 
-        $("." + nombreProcesoSig).toggleClass("parte-hide", false).toggleClass("parte-transicion");
-        $("." + nombreProceso).toggleClass("parte-centra", false).toggleClass("parte-activa-efecto parte-mueve-izquierda");
-        setTimeout(function(){
-            $("." + nombreProcesoSig).toggleClass("parte-activa-efecto parte-centra");
-            $("." + nombreProceso).toggleClass("parte-hide", true);
-        }, 350);
+        if (estadoDisplay == "0px") {
+            $(".menu-vertical").animate({ height: window.innerHeight }, 200);
+        } else {
+            $(".menu-vertical").animate({ height: "0" }, 200);
+        }
+    });
 
-        setTimeout(function(){
-            $("." + nombreProceso).toggleClass("parte-activa-efecto", false);
-            $("." + nombreProcesoSig).toggleClass("parte-activa-efecto", false);
-        }, 500);
-        return procesoActivo = procesoActivo+1;
-    }
+    //Cambia de el texto del proceso
+    var procesos = ['consultoria', 'diseno', 'desarrollo'];
+    var procesoActivo = 0;
+    var imagenes = ['proces_cons', 'proces_dez', 'proces_dev'];
 
-    function cambiaProcesoIzq(procesos, procesoActivo, imagenes){
-        var nombreProceso =	procesos[procesoActivo];
-        var nombreProcesoSig = procesos[procesoActivo-1];
 
-        $("." + nombreProceso + "-img").fadeOut(1500);
-        $("." + nombreProcesoSig + "-img").fadeIn(1500);
+    //Cambia la imagen de fondo al cambiar de proceso
+    $(".derecha").click(function () {
+        console.log("otro clic, proceso a leer: " + procesoActivo);
+        switch (procesoActivo) {
+            case 0:
+                procesoActivo = cambiaProceso(procesos, procesoActivo, imagenes);
+                $(".izquierda").toggleClass("display-none", false);
+                console.log("Proceso Activo: " + procesoActivo);
+                break;
+            case 1:
+                procesoActivo = cambiaProceso(procesos, procesoActivo, imagenes);
+                console.log("Proceso Activo: " + procesoActivo);
+                $(".derecha").toggleClass("display-none", true);
+                break;
+            case 2:
+                //Desaparece la flecha derecha
+                console.log("Proceso Activo: " + procesoActivo);
+                break;
+        }
+    });
 
-        $("." + nombreProceso).toggleClass("parte-activa-efecto");
-        $("." + nombreProcesoSig).toggleClass("parte-activa-efecto");
+    $(".izquierda").click(function () {
+        console.log("otro clic, proceso a leer: " + procesoActivo);
+        switch (procesoActivo) {
+            case 0:
+                console.log("Proceso Activo: " + procesoActivo);
+                break;
+            case 1:
+                $(".izquierda").toggleClass("display-none", true);
+                procesoActivo = cambiaProcesoIzq(procesos, procesoActivo, imagenes);
+                console.log("Proceso Activo: " + procesoActivo);
+                break;
+            case 2:
+                procesoActivo = cambiaProcesoIzq(procesos, procesoActivo, imagenes);
+                $(".derecha").toggleClass("display-none", false);
+                console.log("Proceso Activo: " + procesoActivo);
+                break;
+        }
+    });
 
-        $("." + nombreProceso).toggleClass("parte-mueve-derecha").toggleClass("parte-centra", false);
-        setTimeout(function(){
-            $("." + nombreProcesoSig).toggleClass("parte-hide", false);
-        }, 250);
-        setTimeout(function(){
-            $("." + nombreProcesoSig).toggleClass("parte-mueve-izquierda", false).toggleClass("parte-centra");
-        }, 350);
-        setTimeout(function(){
-            $("." + nombreProceso).toggleClass("parte-transicion parte-activa-efecto parte-mueve-derecha", false).toggleClass("parte-hide");
-            $("." + nombreProcesoSig).toggleClass("parte-activa-efecto", false);
-        }, 500);
-        return procesoActivo = procesoActivo-1;
-    }
+    //Al hacer click sobre cualquier proceso se agranda para que aparezca el texto
+    $("#consultoria").click(function () {
+        abreInfoProceso(this);
+        cierraInfoProceso($("#diseno"));
+        cierraInfoProceso($("#desarrollo"));
+    });
 
-    function remplazaHtmlMovil(){
-        var string = "<section class=\"proceso\"> \
+    $("#diseno").click(function () {
+        abreInfoProceso(this);
+        cierraInfoProceso($("#consultoria"));
+        cierraInfoProceso($("#desarrollo"));
+    });
+
+    $("#desarrollo").click(function () {
+        abreInfoProceso(this);
+        cierraInfoProceso($("#consultoria"));
+        cierraInfoProceso($("#diseno"));
+    });
+});
+
+function efecto($elemento) {
+    $elemento.fadeIn(800, function () {
+        $elemento.fadeOut(800);
+    });
+}
+
+function abreInfoProceso(elemento) {
+    $(elemento).animate({ height: "1200px" });
+    $(elemento).children("p").css("visibility", "visible");
+    $(elemento).children("h3").css("visibility", "visible");
+    $(elemento).children("div.diagrama").css("visibility", "visible");
+    $(elemento).children("div.diagrama").find("p").css("visibility", "visible");
+}
+
+function cierraInfoProceso(elemento) {
+    $(elemento).animate({ height: "500px" });
+    $(elemento).children("p").css("visibility", "hidden");
+    $(elemento).children("h3").css("visibility", "hidden");
+    $(elemento).children("div.diagrama").css("visibility", "hidden");
+    $(elemento).children("div.diagrama").find("p").css("visibility", "hidden");
+}
+
+function cambiaProceso(procesos, procesoActivo, imagenes) {
+    var nombreProceso = procesos[procesoActivo];
+    var nombreProcesoSig = procesos[procesoActivo + 1];
+    console.log("Proceso siguiente: " + nombreProcesoSig);
+
+    $("." + nombreProceso + "-img").fadeOut(1500);
+    $("." + nombreProcesoSig + "-img").fadeIn(1500);
+
+    $("." + nombreProcesoSig).toggleClass("parte-hide", false).toggleClass("parte-transicion");
+    $("." + nombreProceso).toggleClass("parte-centra", false).toggleClass("parte-activa-efecto parte-mueve-izquierda");
+    setTimeout(function () {
+        $("." + nombreProcesoSig).toggleClass("parte-activa-efecto parte-centra");
+        $("." + nombreProceso).toggleClass("parte-hide", true);
+    }, 350);
+
+    setTimeout(function () {
+        $("." + nombreProceso).toggleClass("parte-activa-efecto", false);
+        $("." + nombreProcesoSig).toggleClass("parte-activa-efecto", false);
+    }, 500);
+    return procesoActivo = procesoActivo + 1;
+}
+
+function cambiaProcesoIzq(procesos, procesoActivo, imagenes) {
+    var nombreProceso = procesos[procesoActivo];
+    var nombreProcesoSig = procesos[procesoActivo - 1];
+
+    $("." + nombreProceso + "-img").fadeOut(1500);
+    $("." + nombreProcesoSig + "-img").fadeIn(1500);
+
+    $("." + nombreProceso).toggleClass("parte-activa-efecto");
+    $("." + nombreProcesoSig).toggleClass("parte-activa-efecto");
+
+    $("." + nombreProceso).toggleClass("parte-mueve-derecha").toggleClass("parte-centra", false);
+    setTimeout(function () {
+        $("." + nombreProcesoSig).toggleClass("parte-hide", false);
+    }, 250);
+    setTimeout(function () {
+        $("." + nombreProcesoSig).toggleClass("parte-mueve-izquierda", false).toggleClass("parte-centra");
+    }, 350);
+    setTimeout(function () {
+        $("." + nombreProceso).toggleClass("parte-transicion parte-activa-efecto parte-mueve-derecha", false).toggleClass("parte-hide");
+        $("." + nombreProcesoSig).toggleClass("parte-activa-efecto", false);
+    }, 500);
+    return procesoActivo = procesoActivo - 1;
+}
+
+function remplazaHtmlMovil() {
+    var string = "<section class=\"proceso\"> \
                         <div id=\"consultoria\"> \
                             <h3>El proceso:</h3> \
                             <h2>CONSULTOR&Iacute;A</h2> \
@@ -349,10 +350,10 @@ $(document).ready(function(){
                                     </li> \ </ul> </div> </div> </section> \
                                     ";
     return string;
-    };
+};
 
-    function remplazaHtml(){
-        var string = "<section class=\"proceso\"> \
+function remplazaHtml() {
+    var string = "<section class=\"proceso\"> \
             <div class=\"proceso-img\"></div> \
             <h3>El proceso:</h3> \
             <div class=\"parte-container\"> \
@@ -465,5 +466,5 @@ $(document).ready(function(){
             <div class=\"derecha\"> \
                 <div class=\"flecha\"></div> </div> </section> \
     ";
-        return string;
-    }
+    return string;
+}

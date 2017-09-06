@@ -1,74 +1,4 @@
-<header class="main-header">
-	<div class="main-header-bg"></div>
-	<div class="m2--l--container">
-		<div class="header__logo">
-			<a href="" title="ByteNet">			
-				<img src="img/bytenet_logo_blanco.png" alt="ByteNet Logo">			
-				<span class="header__logo-title"></span>
-			</a>
-		</div>
-		<div class="menu-movil">
-			<span class="linea-menu"></span>
-			<span class="linea-menu"></span>
-			<span class="linea-menu"></span>
-		</div>
-		<div class="menu">
-			<nav class="main-menu">
-					<ul>
-						<li><a href="index.html" class="is-selected">{{ 'HOME.MENU.ITEM1' | translate}}</a></li>
-						<li><a href="proceso.html" class>{{ 'HOME.MENU.ITEM2' | translate }}</a></li>
-						<li><a href="idea.html" class>{{ 'HOME.MENU.ITEM3' | translate }}</a></li>
-					</ul>
-			</nav>			
-		</div>		
-	</div>
-</header>
-<main>
-    <section class="menu-vertical">
-        <nav class="lista-menu">
-            <a href="index.html" class="item-menu">{{ 'HOME.MENU.ITEM1' | translate }}</a>
-            <a href="proceso.html" class="item-menu">{{ 'HOME.MENU.ITEM2' | translate }}</a>
-            <a href="idea.html" class="item-menu">{{ 'HOME.MENU.ITEM3' | translate }}</a>
-        </nav>
-        <footer>
-            <div class="item-copyright">
-                <h4>{{ 'HOME.FOOTER.COPYRIGHT' | translate }}</h4>
-                <h4>{{ 'HOME.FOOTER.DERECHOS' | translate }}</h4>
-            </div>
-            <div class="item-contacto">
-                <div class="emails">
-                    <h4>E-MAILS</h4>
-                    <a href="mailto:ventas@bytenetlab.com.mx">{{ 'HOME.FOOTER.EMAIL1' | translate }}</a>
-                    <a href="mailto:trabajo@bytenetlab.com.mx">{{ 'HOME.FOOTER.EMAIL2' | translate }}</a>
-                </div>
-                <div class="telefonos">
-                    <h4>{{ 'HOME.FOOTER.TELEFONO.TITULO' | translate }}</h4>
-                    <a href="tel:+52(55)32304454">{{ 'HOME.FOOTER.TELEFONO.NUMERO' | translate }}</a>				
-                </div>
-            </div>
-            <div class="item-redes-sociales">
-                <h4>S&Iacute;GUENOS EN:</h4>
-                <!--<a href="https://www.facebook.com/MLSDev" title="Facebook" target="_blank" class="facebook-link"></a>
-                <a href="https://twitter.com/MLSDevCom" title="Twitter" target="_blank" class="twitter-link"></a>
-                <a href="https://www.linkedin.com/company/mlsdev" title="LinkedIn" target="_blank" class="linkedin-link"></a>
-                <a href="https://plus.google.com/u/0/117561677351053481936" title="Google Plus" target="_blank" class="google-link"></a>
-                <a href="https://dribbble.com/mlsdev" title="Dribbble" target="_blank" class="dribbble-link"></a>
-                <a href="https://www.behance.net/mlsdev" title="Behance" target="_blank" class="behance-link"></a>
-                <a href="https://github.com/MLSDev" title="Github" target="_blank" class="github-link"></a>
-                <a href="https://www.youtube.com/channel/UC3iwfhbc4whBaw2svPcznPA" title="Youtube" target="_blank" class="youtube-link"></a>
-                <a href="http://feeds.feedburner.com/mlsdev" title="RSS" target="_blank" class="rss-link"></a> -->
-                <a href="" title="Facebook" target="_blank" class="facebook-link"></a>
-                <a href="" title="Twitter" target="_blank" class="twitter-link"></a>
-                <a href="" title="LinkedIn" target="_blank" class="linkedin-link"></a>
-                <a href="" title="Google Plus" target="_blank" class="google-link"></a>
-                <!--a href="" title="Dribbble" target="_blank" class="dribbble-link"></a>
-                <a href="" title="Behance" target="_blank" class="behance-link"></a>
-                <a href="" title="Github" target="_blank" class="github-link"></a>
-                <a href="" title="Youtube" target="_blank" class="youtube-link"></a>
-                <a href="" title="RSS" target="_blank" class="rss-link"></a-->
-            </div>
-        </footer>
-    </section>
+<main>    
     <section class="l-padding-bottom">
         <div id="js-home-hero" class="hero js-home-hero" >
             <div class="hero__video">
@@ -215,47 +145,17 @@
     <section class="contact-section">
         <div class="nav">
             <div class="nuestro-proceso">
-                <a href="proceso.html">
+                <a ui-sref="proceso" ng-click="cambiaEstilo('estilo_proceso.css')">
                     <h2>Conoce como trabajamos</h2>	
                 </a>
             </div>		
         </div>
         <div class="nav">
             <div class="contacto">
-                <a href="idea.html">
+                <a ui-sref="contacto" ng-click="cambiaEstilo('idea.css')">
                     <h2>Cu&eacute;ntanos tu idea</h2>	
                 </a>
             </div>		
         </div>	
     </section>
 </main>
-<footer class="main-footer">
-	<div class="item item-copyright">
-			<h4>© 2016 ByteNet.</h4>
-			<h4>Todos los derechos reservados.</h4>
-			<p>Llevando la tecnolog&iacute;a al alcance de tu negocio.</p>
-	</div>
-	<div class="item item-contacto">
-		<div class="emails">
-			<h4>E-MAILS</h4>
-			<a href="mailto:abaez@bytenetlab.com.mx">abaez@bytenetlab.com.mx</a>
-			<!--a href="mailto:trabajo@hssoluciones.com">trabajo@bytenetlab.com</a-->
-		</div>
-		<div class="telefonos">
-			<h4>TEL&Eacute;FONOS</h4>
-			<a href="tel:+52(55)73955314<">+52(55) 7395-5314</a>			
-		</div>
-	</div>
-	<div class="item item-redes-sociales">
-		<h4>S&Iacute;GUENOS EN:</h4>
-		<a href="https://www.facebook.com/MLSDev" title="Facebook" target="_blank" class="facebook-link"></a>
-		<a href="https://twitter.com/MLSDevCom" title="Twitter" target="_blank" class="twitter-link"></a>
-		<a href="https://www.linkedin.com/company/mlsdev" title="LinkedIn" target="_blank" class="linkedin-link"></a>
-		<a href="https://plus.google.com/u/0/117561677351053481936" title="Google Plus" target="_blank" class="google-link"></a>
-		<!--a href="https://dribbble.com/mlsdev" title="Dribbble" target="_blank" class="dribbble-link"></a>
-		<a href="https://www.behance.net/mlsdev" title="Behance" target="_blank" class="behance-link"></a>
-		<a href="https://github.com/MLSDev" title="Github" target="_blank" class="github-link"></a>
-		<a href="https://www.youtube.com/channel/UC3iwfhbc4whBaw2svPcznPA" title="Youtube" target="_blank" class="youtube-link"></a>
-		<a href="http://feeds.feedburner.com/mlsdev" title="RSS" target="_blank" class="rss-link"></a-->
-	</div>
-</footer>

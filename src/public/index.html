@@ -1,16 +1,72 @@
 <!DOCTYPE html>
-<html ng-app='consultoriaApp' lang="es">
-<head>
-	<meta character="UTF-8">	
-	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-	<link rel="icon" href="img/favicon.ico" type="image/x-icon">
-	<!--[if lt IE 9]>
-	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js">
-	</script>
-	<![endif]-->
-	<title>{{'HOME.TITULO' | translate}}</title>
-</head>
+<html ng-app='consultoriaApp' ng-controller='BaseController' lang="es">
+
+<head-component estilo="estilo"></head-component>
+
 <body>
-	<consultoria-component></consultoria-component>
+	<header class="main-header">
+		<div class="main-header-bg"></div>
+		<div class="m2--l--container">
+			<div class="header__logo">
+				<a href="" title="ByteNet">			
+					<img src="img/bytenet_logo_blanco.png" alt="ByteNet Logo">			
+					<span class="header__logo-title"></span>
+				</a>
+			</div>
+			<div class="menu-movil">
+				<span class="linea-menu"></span>
+				<span class="linea-menu"></span>
+				<span class="linea-menu"></span>
+			</div>
+			<div class="menu">
+				<nav class="main-menu">
+					<ul>
+						<li><a ui-sref="home" ng-click="cambiaEstilo('estilos.css')" class="is-selected">{{ 'HOME.MENU.ITEM1' | translate}}</a></li>
+						<li><a ui-sref="proceso" ng-click="cambiaEstilo('estilo_proceso.css')" class>{{ 'HOME.MENU.ITEM2' | translate }}</a></li>
+						<li><a ui-sref="contacto" ng-click="cambiaEstilo('idea.css')" class>{{ 'HOME.MENU.ITEM3' | translate }}</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</header>
+	<section class="menu-vertical">
+		<nav class="lista-menu">
+			<a href="index.html" class="item-menu">{{ 'HOME.MENU.ITEM1' | translate }}</a>
+			<a href="proceso.html" class="item-menu">{{ 'HOME.MENU.ITEM2' | translate }}</a>
+			<a href="idea.html" class="item-menu">{{ 'HOME.MENU.ITEM3' | translate }}</a>
+		</nav>
+	</section>
+	<ui-view muestra-elemento="muestraElemento(elemento, valor)"></ui-view>
+	<footer class="main-footer" ng-if="muestraFooter" ng-cloak>
+		<div class="item item-copyright">
+			<h4>{{ 'HOME.FOOTER.COPYRIGHT' | translate }}</h4>
+			<h4>{{ 'HOME.FOOTER.DERECHOS' | translate }}</h4>
+			<p>{{ 'HOME.FOOTER.ESLOGAN' | translate }}</p>
+		</div>
+		<div class="item item-contacto">
+			<div class="emails">
+				<h4>E-MAILS</h4>
+				<a href="mailto:abaez@bytenetlab.com.mx">{{ 'HOME.FOOTER.EMAIL1' | translate }}</a>
+				<!--a href="mailto:trabajo@hssoluciones.com">trabajo@bytenetlab.com</a-->
+			</div>
+			<div class="telefonos">
+				<h4>{{ 'HOME.FOOTER.TELEFONO.TITULO' | translate }}</h4>
+				<a href="tel:+52(55)73955314">{{ 'HOME.FOOTER.TELEFONO.NUMERO1' | translate }}</a>
+			</div>
+		</div>
+		<div class="item item-redes-sociales">
+			<h4>{{ 'HOME.FOOTER.REDES-SOCIALES.TITULO' | translate }}</h4>
+			<a href="https://www.facebook.com/MLSDev" title="Facebook" target="_blank" class="facebook-link"></a>
+			<a href="https://twitter.com/MLSDevCom" title="Twitter" target="_blank" class="twitter-link"></a>
+			<a href="https://www.linkedin.com/company/mlsdev" title="LinkedIn" target="_blank" class="linkedin-link"></a>
+			<a href="https://plus.google.com/u/0/117561677351053481936" title="Google Plus" target="_blank" class="google-link"></a>
+			<!--a href="https://dribbble.com/mlsdev" title="Dribbble" target="_blank" class="dribbble-link"></a>
+				<a href="https://www.behance.net/mlsdev" title="Behance" target="_blank" class="behance-link"></a>
+				<a href="https://github.com/MLSDev" title="Github" target="_blank" class="github-link"></a>
+				<a href="https://www.youtube.com/channel/UC3iwfhbc4whBaw2svPcznPA" title="Youtube" target="_blank" class="youtube-link"></a>
+				<a href="http://feeds.feedburner.com/mlsdev" title="RSS" target="_blank" class="rss-link"></a-->
+		</div>
+	</footer>
 </body>
+
 </html>

@@ -18,6 +18,10 @@
             "TELEFONO": {
                 "TITULO": "TELÉFONOS",
                 "NUMERO1": "+52(55) 3230-4454"                
+            },
+            "ESLOGAN": "Llevando la tecnologÍa al alcance de tu negocio.",
+            "REDES-SOCIALES": {
+                "TITULO": "SÍGUENOS EN:"
             }
         }
     },
